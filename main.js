@@ -5,9 +5,9 @@ function capitalize(str) {
 
 // console.log(capitalize("hello"));
 function getPokemon(event) {
-  const name = document.querySelector("#pokemon-name").value;
-  console.log(name);
-  fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+  const pokeName = document.querySelector("#pokemon-name").value;
+  console.log(pokeName);
+  fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
     .then((response) => response.json())
     .then((data) => {
       // console.log(data);
