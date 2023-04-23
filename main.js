@@ -13,20 +13,20 @@ function getPokemon(event) {
       const id = data.id;
       // console.log(id);
       document.querySelector(".pokemonBox").innerHTML = `
-      <div class="card" style="width: 18rem;">
+      <div class="card" style="width: 18rem" id="card-border">
   <img class="card-img-top" src="${
     data.sprites.other["official-artwork"].front_default
   }" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">${capitalize(data.name)}</h5>
-  </div>
+  <div class="card-body ">
+    <h5 class="card-title text-center">${capitalize(data.name)}</h5>
+ 
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Weight: ${data.weight}</li>
     <li class="list-group-item">Height: ${data.height}</li>
     <li class="list-group-item">Base Experience: ${data.base_experience}</li>
   </ul>
-   <div class="card-body">
-    <button type="button" class="btn btn-warning" >Learn More about the different versions of the pokemon</button>
+  
+    <button type="button" class="btn btn-warning mt-3" >Learn More about the different versions of the pokemon</button>
 
   </div>
  
@@ -96,7 +96,7 @@ function getPokemon(event) {
             // console.log(versionText);
 
             document.querySelector(".versions").innerHTML = `
-              <h4>
+              <h4 class="text-center text-light">
             This Pokemon has different version, with unquie features. They are
             listed below.
           </h4>
