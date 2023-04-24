@@ -10,9 +10,9 @@ function getPokemon(event) {
 
   fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
     .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
+      // if (!response.ok) {
+      //   throw new Error("Network response was not ok");
+      // }
       return response.json();
     })
 
@@ -123,7 +123,13 @@ function getPokemon(event) {
 
     .catch((err) => {
       console.log("pokemon not found", err);
-      alert("Pokemon not found, Sorry.");
+      // alert("Pokemon not found, Sorry.");
+      document.querySelector(".alert-msg").innerHTML = `
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> Pokemon not found, Please check the name.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+     `;
     });
   event.preventDefault();
 }
