@@ -5,10 +5,17 @@ function capitalize(str) {
 
 // console.log(capitalize("hello"));
 function getPokemon(event) {
-  const pokeName = document.querySelector("#pokemon-name").value;
+  const pokeName = document.querySelector("#pokemon-name").value.toLowerCase();
   console.log(pokeName);
+
   fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+
     .then((data) => {
       // console.log(data);
       const id = data.id;
@@ -35,7 +42,9 @@ function getPokemon(event) {
    
     
     `;
-      document.querySelector(".btn").addEventListener("click", getDescription);
+      document
+        .querySelector(".btn")
+        .addEventListener("touchstart", getDescription);
       function getDescription() {
         const descriptionDiv = document.querySelector(".versions");
         if (descriptionDiv.style.display === "none") {
