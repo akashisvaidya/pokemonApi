@@ -2,7 +2,7 @@ document.querySelector("#search-btn").addEventListener("click", getPokemon);
 function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
-
+const recentSearch = [];
 // console.log(capitalize("hello"));
 function getPokemon(event) {
   const pokeName = document.querySelector("#pokemon-name").value.toLowerCase();
@@ -10,9 +10,15 @@ function getPokemon(event) {
 
   fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
     .then((response) => {
-      // if (!response.ok) {
-      //   throw new Error("Network response was not ok");
-      // }
+      if (response.ok) {
+        if (!localStorage.getItem("search")) {
+          localStorage.setItem("search", pokeName);
+        }
+        // throw new Error("Network response was not ok");
+        // recentSearch.push(pokeName);
+
+        console.log(recentSearch);
+      }
       return response.json();
     })
 
@@ -42,9 +48,7 @@ function getPokemon(event) {
    
     
     `;
-      document
-        .querySelector(".btn")
-        .addEventListener("touchstart", getDescription);
+      document.querySelector(".btn").addEventListener("click", getDescription);
       function getDescription() {
         const descriptionDiv = document.querySelector(".versions");
         if (descriptionDiv.style.display === "none") {
